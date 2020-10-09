@@ -1,0 +1,104 @@
+@charset "UTF-8";
+/* google font */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Noto Serif JP", serif;
+}
+
+html {
+  font-size: 10px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: calc(0.59rem + ((1vw - 7.68px) * 0.1736));
+  }
+}
+
+body {
+  font-size: 1.6rem;
+  width: 100%;
+}
+
+/*--|  Common parts  |--*/
+img {
+  width: 100%;
+}
+
+.container {
+  width: 75%;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+}
+
+.heading {
+  font-size: 3.5rem;
+  font-weight: 700;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+.sm-btn {
+  display: inline-block;
+  padding: 0.9rem 0.9rem;
+  text-align: center;
+  color: #fff;
+  background-color: #ff7316;
+  border-radius: 3px;
+}
+
+.bg-btn {
+  display: inline-block;
+  padding: 2rem 6rem;
+  text-align: center;
+  color: #fff;
+  background-color: #ff7316;
+  border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+  .bg-btn {
+    width: 80%;
+  }
+}
+
+.sm-btn,
+.bg-btn {
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.sm-btn:hover,
+.bg-btn:hover {
+  color: #ff7316;
+  background-color: #fff;
+  opacity: .9;
+  -webkit-transition: .3s;
+  transition: .3s;
+  border: #ff7316 2px solid;
+}
+
+.sp-off {
+  display: none;
+}
+
+.sp-on {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .sp-on {
+    display: block;
+  }
+}
+
+/*--⇓⇓  header  ⇓⇓--*/
+/*--⇓⇓  footer  ⇓⇓--*/
+/*--⇓⇓   main   ⇓⇓--*/
+/*# sourceMappingURL=style.css.map */

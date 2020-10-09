@@ -1,0 +1,95 @@
+@charset 'utf-8';
+@import '_mixin';
+@import '_animetion';
+
+*{
+  box-sizing: border-box;
+  font-family: $-textFont;
+}
+
+html{
+  font-size: 10px;
+
+  @include breakPoint {
+    font-size: calc(0.59rem + ((1vw - 7.68px) * 0.1736));
+  }
+}
+
+body{
+  font-size: 1.6rem;
+  width: 100%;
+}
+
+/*--|  Common parts  |--*/
+img{
+  width: 100%;
+}
+
+.container{
+  width: 75%;
+  margin: auto;
+
+  @include breakPoint {
+    width: 95%;
+  }
+}
+
+.heading{
+  font-size: 3.5rem;
+  font-weight: 700;
+  font-family: $-headingFont;
+}
+
+.sm-btn{
+  @include btnStyle( 0.9rem, 0.9rem );
+}
+
+.bg-btn{
+  @include btnStyle( 2rem, 6rem );
+  
+  @include breakPoint{
+    width: 80%;
+  }
+}
+
+.sm-btn,
+.bg-btn{
+  transition: .3s;
+  &:hover{
+    @include hoverStyle($mainColor,#fff);
+  }
+}
+
+.sp-off{
+  display: none;
+}
+
+.sp-on{
+  display: block;
+
+  @include breakPoint{
+    display: block;
+  }
+}
+
+//----------------------//
+/*--⇓⇓  header  ⇓⇓--*/
+
+//--⇑⇑----------⇑⇑--//
+//----------------------//
+
+
+//----------------------//
+/*--⇓⇓  footer  ⇓⇓--*/
+
+//--⇑⇑----------⇑⇑--//
+//----------------------//
+
+
+//----------------------//
+/*--⇓⇓   main   ⇓⇓--*/
+
+//--⇑⇑----------⇑⇑--//
+//----------------------//
+
+
