@@ -5,14 +5,18 @@
 *{
   box-sizing: border-box;
   font-family: $-textFont;
+  color: $blackColor;
+  // outline: turquoise solid .5px;
 }
 
 html{
   font-size: 10px;
-
-  @include breakPoint {
+  
+  @include spPoint{
     font-size: calc(0.59rem + ((1vw - 7.68px) * 0.1736));
   }
+
+
 }
 
 body{
@@ -21,75 +25,730 @@ body{
 }
 
 /*--|  Common parts  |--*/
+.main{
+  transform: translateX(0vw);
+  transition: 0.5s;
+}
+.main.open{
+  transform: translateX(-50vw);
+  transition: 0.5s;
+}
+
+article{
+  padding:$mainPaddingSpace 0;
+  overflow: hidden;
+}
+
 img{
   width: 100%;
 }
 
-.container{
-  width: 75%;
-  margin: auto;
-
-  @include breakPoint {
-    width: 95%;
-  }
+p{
+  line-height: $s16 * 1.5;
 }
 
+.container{
+  width: 75%;
+  margin: auto;}
+
 .heading{
-  font-size: 3.5rem;
+  font-size: $s45;
   font-weight: 700;
   font-family: $-headingFont;
+  line-height: $s45 * 1.3;
+  letter-spacing: 2px;
 }
 
 .sm-btn{
   @include btnStyle( 0.9rem, 0.9rem );
+  &:hover{
+    @include hoverStyle( none,transparent);
+  }
 }
 
 .bg-btn{
-  @include btnStyle( 2rem, 6rem );
-  
-  @include breakPoint{
-    width: 80%;
+  @include btnStyle( 2.5rem, 6rem );
+  &:hover{
+    @include hoverStyle( $mainColor,#fff);
   }
 }
 
 .sm-btn,
 .bg-btn{
   transition: .3s;
-  &:hover{
-    @include hoverStyle($mainColor,#fff);
-  }
 }
 
-.sp-off{
+.pc-only{
+  display: block;
+}
+
+.sp-only{
   display: none;
 }
 
-.sp-on{
-  display: block;
 
-  @include breakPoint{
-    display: block;
+/*---⇓⇓  header  ⇓⇓---*/
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+  width: 100%;
+  padding: 2rem 5rem;
+
+  .logo{
+    &__head{
+      @include logoStyle;
+      font-size: $s26;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    
+    &__sub-head{
+      @include logoStyle;
+      font-size: $s20;
+      font-weight: 500;
+    }
+  }
+
+  .gnav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    min-width: 600px;
+    
+    @include tbPoint{
+      min-width: 400px;
+      width: 70%;
+    }
+
+    @include spPoint{
+      display: none;
+    }
+
+    &__item{
+      color: $whiteColor;
+    }
   }
 }
 
-//----------------------//
-/*--⇓⇓  header  ⇓⇓--*/
-
-//--⇑⇑----------⇑⇑--//
-//----------------------//
 
 
-//----------------------//
-/*--⇓⇓  footer  ⇓⇓--*/
+/*---⇓⇓  footer  ⇓⇓---*/
+.footer{
+  background-image: url('../img/bk_footer.jpg');
+  @include background;
+  width: 100%;
+  height: 50vh;
+  padding: 33px 65px;
 
-//--⇑⇑----------⇑⇑--//
-//----------------------//
+  @include spPoint {
+    padding: 20px;
+    height: 10vh;
+    text-align: center;
+  }
+
+  &__wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &__logo{
+    &--head{
+      @include logoStyle;
+      font-size: $s26;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    &--sub-head{
+      @include logoStyle;
+      font-size: $s20;
+      font-weight: 500;
+    }
+  }
+
+  &__nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 55%;
+    min-width: 600px;
+
+    @include tbPoint{
+      margin-top: 50px;
+    }
+
+    @include spPoint{
+      margin: 0;
+    }
+
+    &--item{
+      font-size: $s17;
+      color: $whiteColor;
+    }
+  }
+
+  &__copy-write{
+    @include spPoint {
+      color: $whiteColor;
+    }
+  }
+
+}
 
 
-//----------------------//
-/*--⇓⇓   main   ⇓⇓--*/
 
-//--⇑⇑----------⇑⇑--//
-//----------------------//
+/*---⇓⇓   main   ⇓⇓---*/
+.first-visual{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-image: url('../img/first_visual.jpg');
+  @include background;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  transform-origin: center;
+
+  &__inner{
+  position: relative;
+  z-index: 100;
+  }
+
+  &__head{
+    @include Position( 50%, 50%);
+    color: $whiteColor;
+    font-family: $-spFont;
+    font-size: $s55;
+    font-weight: 700;
+    line-height: $s55 * 1.2;
+    animation: slideIn forwards 1s ease-in-out;
+  }
+  &__sub-head{
+    @include Position( 62%, 50%);
+    color: rgba( $whiteColor , 0.8);
+    font-size: $s20;
+    width: 100%;
+    animation: slideUp 1s forwards ease-out;
+    animation-delay: 1.2s;
+    opacity: 0;
+  }
+}
+
+.inner{
+  position: relative;
+  z-index: 50;
+  padding-top: 100vh;
+}
+
+.what{
+  background-color: $mainColor;
+
+  &__container{
+    display: flex;
+    flex-flow: column wrap;
+    height: 53vh;
+    overflow: hidden;
+  }
+
+  &__head{
+    order: 1;
+    position: relative;
+    width: 45%;
+    height: fit-content;
+
+    &::before{
+      @include shortened;
+      bottom: -2.9rem;
+      left: -0.1rem;
+      width: 4.2rem;
+      height: 0.4rem;
+      border-radius: 5px;
+      transform: rotate(45deg);
+    }
+
+    &::after{
+      @include shortened;
+      bottom: -4.4rem;
+      left: 3.4rem;
+      width: 6.0rem;
+      border-radius: 5px;
+      height: 0.4rem; 
+    }
+  }
+  
+  &__text-box{
+    order: 2;
+    width: 45%;
+    min-width: 200px;
+    height: 250px;
+    margin-top: 27px;
+    padding: 0 10px 0 12%;    
+    
+    &--text{
+      margin-bottom: 14px;
+    }
+
+    // @include tbPoint {
+    //   padding: 0;
+    // }
+  }
+
+  &__img-box{
+    order: 3;
+    width: 55%;
+    height: 100%;
+
+    &--img{
+      object-fit: cover;
+    }
+  }
+  
+  @include tbPoint{
+    &__container{
+      height: auto;
+      flex-flow: column;
+      justify-content: left;
+      align-items: flex-end;
+    }
+
+    &__head{
+      width: 100%;
+      padding-left: 40px;
+      margin-bottom: 10px;
 
 
+      &::before{
+        bottom: -14px;
+        left: 76px;
+        width: 34px;
+        transform: rotate(40deg);
+      }
+  
+      &::after{
+        bottom: -24px;
+        left: 104px;
+        width: 80px;
+      }
+    }
+
+    &__sp-head{
+      order: 2;
+      font-size: $s20;
+      padding-right: 10px;
+      margin-bottom: 10px;
+      display: block;
+      font-family: $-headingFont;
+      font-weight: 500;
+    }
+
+    &__text-box{
+      order: 4;
+      width: 100%;
+      height: auto;
+      margin-top: 20px;
+      padding-bottom: 60px;
+    }
+
+    &__img-box{
+      order: 3;
+      width: 100%;
+    }
+
+    &__sp-btn{
+      order: 5;
+      display: inline-block;
+      color: $whiteColor;
+      background-color: $blackColor;
+      border-radius: 5px;
+      text-align: center;
+      width: 150px;
+      padding: 12px 20px;
+    }
+  }
+
+  @include spPoint {
+    &__container{
+      height: auto;
+      flex-flow: column;
+      justify-content: left;
+      align-items: flex-end;
+      overflow: visible;
+    }
+
+    &__head{
+      padding-left: 00px;
+      margin-bottom: 10px;
+
+
+      &::before{
+        bottom: -15px;
+        left: 2.6rem;
+        width: 3.4rem;
+        transform: rotate(40deg);
+      }
+  
+      &::after{
+        bottom: -24px;
+        left: 5.45rem;
+        width: 5.5rem;
+      }
+    }
+
+    &__text-box{
+      padding-left: 0px;
+    }
+  }
+}
+
+.about{
+  background-color: $whiteColor;
+
+  &__head{
+    text-align: center;
+    margin: 0 0 1rem 0;
+  }
+  
+  &__sub-head{
+    text-align: center;
+    margin: 0 0 6rem 0;
+  }
+
+  &__container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__box{
+    position: relative;
+    width: calc( ( 100% / 3 ) - 1rem);
+    margin-bottom: 7rem;
+
+    &::before{
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: '';
+      width: 0%;
+      height: 100%;
+      background-color: rgba($mainColor, 0.1);
+    }
+
+    @include spPoint{
+      width: calc( ( 100% / 2 ) - 1rem);
+    }
+
+    &--thumbnail{
+      margin-bottom: 1.5rem;
+    }
+    
+    &--title{
+      font-size: $s17;
+      font-weight: 600;
+      font-family: $-headingFont;
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__box:hover{
+    &::before{
+      width: 100%;
+      transition: .2s;
+    }
+  }
+
+}
+
+.consultation{
+  background-image: url(../img/bk.jpg);
+  @include background;
+  text-align: center;
+
+  &__text{
+    color: $whiteColor;
+    font-size: $s17;
+    padding: 0.2rem;
+  }
+
+  &__btn{
+    font-size: $s20;
+    font-family: $-headingFont;
+    margin-top: 3.5rem;
+  }
+}
+
+.news{
+  background-color: $mainColor;
+
+  &__container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__box{    
+    position: relative;
+    width: calc( ( 100% / 2 ) - 1rem);
+    display: flex;
+    justify-content: space-between;
+    margin: 5rem 0;
+
+    &::before{
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: '';
+      width: 0%;
+      height: 100%;
+      background-color: rgba($whiteColor, 0.1);
+    }
+
+    @include spPoint{
+      width: 100%
+    }
+
+    &--date{
+      position: relative;
+      @include Position( -2.5rem, 13rem);
+      font-family: $-spFont;
+      font-weight: 600;
+
+      &::before{
+        @include shortened;
+        top: 1.8rem;
+        left: -9rem;
+        width: 3rem;
+        height: 3px;
+        border-radius: 5px;
+        transform: rotate(-45deg);
+      }
+  
+      &::after{
+        @include shortened;
+        top: 50%;
+        left: -6.6rem;
+        width: 6rem;
+        border-radius: 5px;
+        height: 3px; 
+      }
+
+    }
+
+    &--thumbnail{
+      width: 17rem;
+      height: 17rem;
+      object-fit: cover;
+      margin: 0 1rem 0 0;
+    }
+
+    &--text-box{
+      width: 60%;
+    }
+  }
+
+  &__box:hover{
+    &::before{
+      width: 100%;
+      transition: .5s;
+    }
+  }
+}
+
+
+
+/*---⇓⇓  sp-nav  ⇓⇓---*/
+.sp-nav{
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50vw;
+  height: 100vh;
+  background-color: $blackColor;
+  padding: 4rem;
+  transition: 0.5s;
+  transform: translateX(50vw);
+
+
+  &__inner{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 80%;
+  }
+
+  &__item{
+    display: block;
+    width: 100%;
+    color: $whiteColor;
+  }
+}
+.sp-nav.open{
+  // display: block;
+  transition: 0.5s;
+  transform: translateX(0vw);
+}
+.icon{
+  position: fixed;
+  z-index: 100;
+  top: 20px;
+  right: 20px;
+  background-color: $mainColor;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;      
+  cursor: pointer;
+  user-select: none;
+
+  &__wrap{
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  &__border{
+    display: inline-block;
+    @include Position( 14px, 50%);
+    background-color: $whiteColor;
+    width: 27px;
+    height: 2px;
+    transition: 0.5s;
+
+    &::before{
+      @include Position(13px,50%);
+      content: '';
+      background-color: $whiteColor;
+      width: 27px;
+      height: 2px;
+      transition: 0.5s;
+    }
+
+    &::after{
+      @include Position(24px,50%);
+      content: '';
+      background-color: $whiteColor;
+      width: 27px;
+      height: 2px;
+      transition: 0.5s;
+    }
+  }
+}
+.icon.open{
+
+ .icon__border{
+   background-color: transparent;
+   transform: translate(-50%, -50%) rotate(360deg);
+    &::before{
+      top: 10px;
+      left: 0%;
+      transform: translate(0%,0%) rotate(-135deg);
+      transition: 0.5s;
+    }
+    
+    &::after{
+      top: 10px;
+      left: 0%;
+      transform: translate(0%,0%) rotate(135deg);
+      transition: 0.5s;
+    }
+  }
+}
+
+/*-⇓⇓  return-btn  ⇓⇓-*/
+.return-btn{
+  opacity: 0;
+  position: fixed;
+  z-index: 50;
+  bottom: 20px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: $mainColor;
+  cursor: pointer;
+  user-select: none;
+
+  i{
+    font-size: 5rem;
+    line-height: 55px;
+    color: $whiteColor;
+  }
+}
+.return-btn.show{
+  opacity: 1;
+}
+
+/*-⇓⇓  フェードインアニメーション  ⇓⇓-*/
+.leftIn{
+  // transform: translateX(50%);
+  opacity: 0;
+}
+.leftIn.move{
+  animation: animationLeft forwards 0.8s ease-in-out;
+  opacity: 1;
+  transition: .2s;
+}
+
+.rightIn{
+  // transform: translateX(100px);
+  opacity: 0;
+}
+.rightIn.move{
+  animation: animationRight forwards 0.8s ease-in-out;
+  opacity: 1;
+  transition: .2s;
+}
+
+.topIn{
+  // transform: translateX(100px);
+  opacity: 0;
+}
+.topIn.move{
+  animation: animationTop forwards 0.8s ease-in-out;
+  opacity: 1;
+  transition: .2s;
+}
+
+.bottomIn{
+  opacity: 0;
+}
+.bottomIn.move{
+  animation: animationBottom forwards 0.8s ease-in-out;
+  // transition: .2s;
+
+  $delaySeconds : ( 0, 0.2 , 0.4, 0.6, 0.8, 1, 0, 0.2, 0.3, 0.4,0.5);
+  $i: 1;
+  @each $Seconds in $delaySeconds {
+    &:nth-child( #{$i} ) {
+      animation-delay: #{$Seconds}s;
+      $i : $i+1;
+    }
+  }
+}
+
+@include spPoint{
+  .container{
+    width: 90%;
+  }
+
+  .pc-only{
+    display: none;
+  }
+
+  .sp-only{
+    display: block;
+  }
+
+  .bg-btn{
+    width: 80%;
+  }
+}
